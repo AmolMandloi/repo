@@ -26,53 +26,29 @@
     <finalName>demo</finalName>
   </build>
   <profiles>
+    
     <profile>
-      <id>wildfly</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <build>
+     <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
+     <!-- Use this profile for any OpenShift specific customization your app will need. -->
+     <!-- By default that is to put the resulting archive into the 'deployments' folder. -->
+     <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
+     <id>openshift</id>
+     <build>
+        <finalName>SampleApp</finalName>
         <plugins>
           <plugin>
-            <groupId>org.wildfly.plugins</groupId>
-            <artifactId>wildfly-jar-maven-plugin</artifactId>
-            <version>1.0.0.Alpha4</version>
-            <executions>
-              <execution>
-                <goals>
-                  <goal>package</goal>
-                </goals>
-              </execution>
-            </executions>
-            <configuration>
-              <feature-pack-location>wildfly@maven(org.jboss.universe:community-universe)#${version.wildfly}</feature-pack-location>
-              <layers>
-                <layer>jaxrs</layer>
-              </layers>
-            </configuration>
-          </plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>2.3</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <outputDirectory>target</outputDirectory>
+              		  <warName>ROOT</warName>
+                </configuration>
+            </plugin>
         </plugins>
       </build>
-      <dependencies>
-        <dependency>
-          <groupId>org.jboss.spec.javax.ws.rs</groupId>
-          <artifactId>jboss-jaxrs-api_2.0_spec</artifactId>
-          <version>1.0.1.Final</version>
-          <scope>provided</scope>
-        </dependency>
-      </dependencies>
-      <repositories>
-        <repository>
-          <id>jboss-public-repository</id>
-          <name>JBoss Public Maven Repository Group</name>
-          <url>https://repository.jboss.org/nexus/content/groups/public/</url>
-        </repository>
-        <repository>
-          <id>Red Hat GA</id>
-          <name>Red Hat GA</name>
-          <url>https://maven.repository.redhat.com/ga/</url>
-        </repository>
-      </repositories>
     </profile>
   </profiles>
+  
 </project>
