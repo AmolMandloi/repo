@@ -13,7 +13,7 @@ def appName="microprofile"
              inheritFrom: "maven",
              containers: [
                 containerTemplate(name: "jnlp", 
-                       image: "docker-registry.default.svc:5000/ci/jenkins-slave", 
+                       image: "docker-registry.default.svc:5000/cicd/jenkins-slave", 
                        resourceRequestMemory: "512Mi", 
                        resourceLimitMemory: "512Mi", 
                        envVars: [
