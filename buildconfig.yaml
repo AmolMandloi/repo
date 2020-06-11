@@ -2,13 +2,13 @@
   kind: BuildConfig
   metadata:
     labels:
-      app: ${APP_NAME}-docker
-    name: ${APP_NAME}-docker
+      app: microprofile-docker
+    name: microprofile-docker
   spec:
     output:
       to:
         kind: ImageStreamTag
-        name: ${APP_NAME}:latest
+        name: microprofile:latest
     postCommit: {}
     resources: {}
     runPolicy: Serial
