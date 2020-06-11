@@ -45,12 +45,13 @@ def appName="microprofile"
      
         stage("Build Image") {
           unstash name:"war"
-	  sh '''
-	         APP_NAME=${appName}
-		 export APP_NAME
-		 echo $APP_NAME
-	  '''
-          def status = sh(returnStdout: true, script: "oc start-build buildconfig.yaml --from-file=target/demo.war")
+	   
+	        sh "APP_NAME=${appName}"
+		sh "export APP_NAME"
+		sh "echo $APP_NAME"
+		sh "oc create -f buildconfig.yaml"
+	  
+          def status = sh(returnStdout: true, script: "oc start-build ${APP_NAME}-docker --from-file=target/demo.war")
           def result = status.split("\n").find{ it.matches("^build.*started") }
           
           if(!result) {
