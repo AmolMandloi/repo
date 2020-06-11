@@ -14,6 +14,7 @@ objects:
   metadata:
     labels:
       app: ${APP_NAME}
+      template: maventemplate
     name: ${APP_NAME}
   spec: {}
   status:
@@ -23,7 +24,9 @@ objects:
   metadata:
     labels:
       app: ${APP_NAME}-docker
+      template: maventemplate
     name: ${APP_NAME}-docker
+    
   spec:
     output:
       to:
@@ -52,6 +55,7 @@ objects:
   metadata:
     labels:
       app: ${APP_NAME}
+      template: maventemplate
     name: ${APP_NAME}
   spec:
     replicas: 1
@@ -71,6 +75,7 @@ objects:
         labels:
           app: ${APP_NAME}
           deploymentconfig: ${APP_NAME}
+         
       spec:
         containers:
         - image: ${APP_NAME}:latest
@@ -124,6 +129,7 @@ objects:
       openshift.io/generated-by: OpenShiftNewApp
     labels:
       app: ${APP_NAME}
+      template: maventemplate
     name: ${APP_NAME}
   spec:
     ports:
@@ -144,6 +150,7 @@ objects:
     name: ${APP_NAME}
     labels:
       app: ${APP_NAME}
+      template: maventemplate
   spec:
     to:
       kind: Service
