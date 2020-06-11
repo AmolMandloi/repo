@@ -50,7 +50,7 @@ def appName="microprofile"
                 openshift.withProject() {
 		   
                   
-		   openshift.selector('rc', [ template : maventemplate ]).delete('--ignore-not-found')
+		   openshift.selector("all", [ name : microprofile ]).delete('--ignore-not-found')
 
 		   }
                 }
