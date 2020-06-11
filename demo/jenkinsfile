@@ -48,7 +48,9 @@ def appName="microprofile"
 	    
 	      openshift.withCluster() {
                 openshift.withProject() {
-                    openshift.selector("all", [ template : maventemplate ]).delete('--ignore-not-found')
+		   
+                   def obj = openshift.selector("all", [ template : maventemplate ])
+		   echo "$obj"
                   }
                 }
 	        
