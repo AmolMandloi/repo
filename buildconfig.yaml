@@ -18,7 +18,35 @@ objects:
   spec: {}
   status:
     dockerImageRepository: ""
-
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    labels:
+      app: ${APP_NAME}-docker
+    name: ${APP_NAME}-docker
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: ${APP_NAME}:latest
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      dockerfile: |-
+        FROM wildfly
+        ADD demo.war /opt/jboss/wildfly/standalone/deployments/
+        
+      binary:
+        asFile: demo.war
+      type: Docker
+    strategy:
+      dockerStrategy:
+        from:
+          kind: ImageStreamTag
+          name: wildfly:latest
+      type: Docker
+    triggers: []
 - apiVersion: v1
   kind: DeploymentConfig
   metadata:
