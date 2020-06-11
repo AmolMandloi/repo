@@ -49,9 +49,10 @@ def appName="microprofile"
 	      openshift.withCluster() {
                 openshift.withProject() {
 		   
-                   def obj = openshift.selector('all', "$appName")
-		   echo "$obj"
-                  }
+                  
+		   openshift.selector('rc', [ template : templateName ]).delete('--igonore-not-found')
+
+		   }
                 }
 	        
 
