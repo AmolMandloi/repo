@@ -1,5 +1,6 @@
 def appName="microprofile"
       def project=""
+      
      
       node {
         stage("Initialize") {
@@ -44,6 +45,11 @@ def appName="microprofile"
      
         stage("Build Image") {
           unstash name:"war"
+	  sh '''
+	         APP_NAME=${appName}
+		 export APP_NAME
+		 echo $APP_NAME
+	  '''
           def status = sh(returnStdout: true, script: "oc start-build ${appName}-docker --from-file=target/demo.war")
           def result = status.split("\n").find{ it.matches("^build.*started") }
           
