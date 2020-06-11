@@ -8,7 +8,7 @@
     output:
       to:
         kind: ImageStreamTag
-        name: ${appName}:latest
+        name: microprofile:latest
     postCommit: {}
     resources: {}
     runPolicy: Serial
