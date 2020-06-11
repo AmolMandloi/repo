@@ -49,7 +49,7 @@ def appName="microprofile"
 	      openshift.withCluster() {
                 openshift.withProject() {
 		   
-                   def obj = openshift.selector("all", [ template : maventemplate ])
+                   def obj = openshift.selector('all', "$appName")
 		   echo "$obj"
                   }
                 }
