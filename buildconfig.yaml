@@ -2,8 +2,8 @@
   kind: BuildConfig
   metadata:
     labels:
-      app: ${appName}-docker
-    name: ${appName}-docker
+      app: ${APP_NAME}-docker
+    name: ${APP_NAME}-docker
   spec:
     output:
       to:
